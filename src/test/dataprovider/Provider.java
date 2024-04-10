@@ -4,7 +4,7 @@ import org.testng.annotations.DataProvider;
 
 public class Provider {
     @DataProvider
-    public static Object[][] data() {
-        return new Object[][]{{"data1"}, {"data2"}, {"data3"}};
+    public static Object[][] netlifySearchKeywords() {
+        return new Object[][]{{"john"}, {"alex"}, {"richard"}};
     }
 }
