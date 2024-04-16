@@ -1,5 +1,7 @@
 package pages;
 
+import asserts.CustomSoftAssert;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,9 +12,12 @@ import java.time.Duration;
 public class BasePage {
     final long EXPLICIT_TIMEOUT = 30;
     WebDriverWait wait;
+    @Getter
+    CustomSoftAssert csa;
 
     public BasePage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_TIMEOUT));
+        this.csa = new CustomSoftAssert();
     }
 
     void waitForElementAvailable(WebElement element) {

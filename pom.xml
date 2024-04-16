@@ -15,6 +15,7 @@
         <allure-testng.version>2.21.0</allure-testng.version>
         <allure-attachment.version>2.21.0</allure-attachment.version>
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +38,12 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-attachments</artifactId>
             <version>${allure-attachment.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>

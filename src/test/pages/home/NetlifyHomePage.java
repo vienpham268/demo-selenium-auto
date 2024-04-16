@@ -20,8 +20,11 @@ public class NetlifyHomePage extends BasePage {
 
     public void doASearch(String text) {
         sendTextToElement(iptSearch, text);
+        getCsa().assertEquals("aa", text, "Verify line1");
         clickToElement(btnSearch);
+        getCsa().assertEquals("bb", text, "Verify line2");
     }
+
 
     public void clearSearch() {
         clearTextInElement(iptSearch);

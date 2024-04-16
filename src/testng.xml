@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite name">
+    <listeners>
+        <listener class-name="listener.Listener"></listener>
+        <listener class-name="listener.MethodListener"></listener>
+    </listeners>
     <parameter name="environment" value="sit"/>
     <parameter name="browser" value="chrome"/>
     <test name="Test demo">
