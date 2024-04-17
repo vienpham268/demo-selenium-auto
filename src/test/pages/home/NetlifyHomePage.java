@@ -1,10 +1,10 @@
 package pages.home;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
+import scripts.BaseTest;
 
 public class NetlifyHomePage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='enter github user name']")
@@ -13,9 +13,9 @@ public class NetlifyHomePage extends BasePage {
     @FindBy(xpath = "//button[text()='search']")
     WebElement btnSearch;
 
-    public NetlifyHomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+    public NetlifyHomePage() {
+        super(BaseTest.driverThread.get());
+        PageFactory.initElements(BaseTest.driverThread.get(), this);
     }
 
     public void doASearch(String text) {

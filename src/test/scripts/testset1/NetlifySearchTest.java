@@ -8,7 +8,7 @@ import scripts.BaseTest;
 public class NetlifySearchTest extends BaseTest {
     @Test(dataProviderClass = Provider.class, dataProvider = "netlifySearchKeywords")
     public void searchTest(String keyword) {
-        new NetlifyHomePage(driver).doASearch(keyword);
-        new NetlifyHomePage(driver).clearSearch();
+        new NetlifyHomePage().doASearch(keyword);
+        new NetlifyHomePage().clearSearch();
     }
 }
