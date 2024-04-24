@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    final long EXPLICIT_TIMEOUT = 30;
+    final long EXPLICIT_TIMEOUT = 1;
     WebDriverWait wait;
     @Getter
     CustomSoftAssert csa;
@@ -30,7 +30,6 @@ public class BasePage {
         element.sendKeys(text);
         System.out.println("Sent text " + text + " to element " + element);
     }
-
 
     protected void clearTextInElement(WebElement element) {
         waitForElementAvailable(element);

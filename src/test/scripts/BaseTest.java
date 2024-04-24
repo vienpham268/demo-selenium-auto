@@ -7,13 +7,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import utils.YamlUtils;
+
+import java.util.Map;
 
 public class BaseTest {
     public static ThreadLocal<WebDriver> driverThread = ThreadLocal.withInitial(() -> null);
+    public static Map environment;
 
     @BeforeClass
     @Parameters({"browser", "environment"})
-    public void beforeClass(@Optional("chrome") String browser, @Optional("sit") String envi) {
+    public void beforeClass(@Optional("chrome") String browser, @Optional("dev") String envi) {
+        environment = YamlUtils.getConfig("src/resources/env-" + envi + ".yaml");
         switch (browser) {
             case "chrome":
                 driverThread.set(new ChromeDriver());
@@ -25,7 +30,7 @@ public class BaseTest {
                 System.out.println("Unknown browser");
         }
         driverThread.get().manage().window().maximize();
-        driverThread.get().get("https://gh-users-search.netlify.app/");
+        driverThread.get().get(environment.get("url").toString());
     }
 
     @AfterClass

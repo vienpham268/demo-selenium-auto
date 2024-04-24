@@ -6,7 +6,7 @@
         <listener class-name="listener.Listener"></listener>
         <listener class-name="listener.MethodListener"></listener>
     </listeners>
-    <parameter name="environment" value="sit"/>
+    <parameter name="environment" value="dev"/>
     <parameter name="browser" value="chrome"/>
     <test name="Test demo">
         <classes>

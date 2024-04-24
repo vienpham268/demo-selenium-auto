@@ -1,5 +1,6 @@
 package pages.home;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,6 +19,7 @@ public class NetlifyHomePage extends BasePage {
         PageFactory.initElements(BaseTest.driverThread.get(), this);
     }
 
+    @Step("Do a search with  {text}")
     public void doASearch(String text) {
         sendTextToElement(iptSearch, text);
         getCsa().assertEquals("aa", text, "Verify line1");
@@ -25,9 +27,8 @@ public class NetlifyHomePage extends BasePage {
         getCsa().assertEquals("bb", text, "Verify line2");
     }
 
-
+    @Step("Clear search")
     public void clearSearch() {
         clearTextInElement(iptSearch);
     }
-
 }
