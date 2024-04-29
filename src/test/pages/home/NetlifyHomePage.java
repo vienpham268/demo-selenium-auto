@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
-import scripts.BaseTest;
 
 public class NetlifyHomePage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='enter github user name']")
@@ -15,8 +14,7 @@ public class NetlifyHomePage extends BasePage {
     WebElement btnSearch;
 
     public NetlifyHomePage() {
-        super(BaseTest.driverThread.get());
-        PageFactory.initElements(BaseTest.driverThread.get(), this);
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Do a search with  {text}")
