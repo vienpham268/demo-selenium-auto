@@ -6,16 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import scripts.BaseTest;
 
 import java.time.Duration;
 
 public class BasePage {
-    final long EXPLICIT_TIMEOUT = 1;
+    final long EXPLICIT_TIMEOUT = 30;
     WebDriverWait wait;
     @Getter
     CustomSoftAssert csa;
+    protected WebDriver driver;
 
-    public BasePage(WebDriver driver) {
+    public BasePage() {
+        this.driver = BaseTest.driverThread.get();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_TIMEOUT));
         this.csa = new CustomSoftAssert();
     }

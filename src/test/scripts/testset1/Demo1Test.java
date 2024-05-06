@@ -39,6 +39,4 @@ public class Demo1Test {
         if (driver != null)
             this.driver.quit();
     }
-
-
 }

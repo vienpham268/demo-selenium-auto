@@ -15,8 +15,7 @@ public class NetlifyHomePage extends BasePage {
     WebElement btnSearch;
 
     public NetlifyHomePage() {
-        super(BaseTest.driverThread.get());
-        PageFactory.initElements(BaseTest.driverThread.get(), this);
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Do a search with  {text}")
