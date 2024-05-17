@@ -4,6 +4,7 @@ import asserts.CustomSoftAssert;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import scripts.BaseTest;
@@ -16,11 +17,13 @@ public class BasePage {
     @Getter
     CustomSoftAssert csa;
     protected WebDriver driver;
+    Actions actions;
 
     public BasePage() {
         this.driver = BaseTest.driverThread.get();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_TIMEOUT));
         this.csa = new CustomSoftAssert();
+        this.actions = new Actions(driver);
     }
 
     void waitForElementAvailable(WebElement element) {

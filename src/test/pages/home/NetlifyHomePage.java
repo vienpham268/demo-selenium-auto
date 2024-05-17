@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
-import scripts.BaseTest;
 
 public class NetlifyHomePage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='enter github user name']")
