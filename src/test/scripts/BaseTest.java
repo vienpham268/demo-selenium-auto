@@ -3,10 +3,8 @@ package scripts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import utils.FileUtils;
 import utils.YamlUtils;
 
 import java.util.Map;
@@ -15,7 +13,12 @@ public class BaseTest {
     public static ThreadLocal<WebDriver> driverThread = ThreadLocal.withInitial(() -> null);
     public static Map environment;
 
-    @BeforeClass
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite(){
+        FileUtils.deleteAllFilesInFolder("allure-results");
+    }
+
+    @BeforeClass(alwaysRun = true)
     @Parameters({"browser", "environment"})
     public void beforeClass(@Optional("chrome") String browser, @Optional("dev") String envi) {
         environment = YamlUtils.getConfig("src/resources/env-" + envi + ".yaml");
@@ -33,7 +36,7 @@ public class BaseTest {
         driverThread.get().get(environment.get("url").toString());
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void killDriver() {
         System.out.println("After class of test, killing driver...");
         if (driverThread.get() != null) {
