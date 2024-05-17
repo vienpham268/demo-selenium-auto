@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite name">
+<suite name="Suite name" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="listener.Listener"></listener>
         <listener class-name="listener.MethodListener"></listener>
     </listeners>
-    <parameter name="environment" value="dev"/>
+    <groups>
+        <run>
+            <include name = "smoke"></include>
+        </run>
+    </groups>
+    <parameter name="environment" value="smoke"/>
     <parameter name="browser" value="chrome"/>
-    <test name="Test demo">
-        <classes>
-            <class name="scripts.testset1.NetlifySearchTest"></class>
-        </classes>
+    <test name="Test demo" verbose="1">
+        <packages>
+            <package name="scripts.testset1.*"></package>
+        </packages>
     </test>
-
 </suite>

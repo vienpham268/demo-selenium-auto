@@ -20,13 +20,13 @@ public class Demo1Test {
         System.out.println("Will be run for each test case");
     }
 
-    @Test
+    @Test(groups = {"test"})
     void newTest1() {
         this.driver.get("https://google.com");
         System.out.println("Finish test case 1");
     }
 
-    @Test
+    @Test(groups = {"test"})
     void newTest2() {
         this.driver.get("https://google.com");
         System.out.println("Finish test case 2");
