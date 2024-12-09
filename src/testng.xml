@@ -6,16 +6,16 @@
         <listener class-name="listener.Listener"></listener>
         <listener class-name="listener.MethodListener"></listener>
     </listeners>
-    <groups>
-        <run>
-            <include name = "smoke"></include>
-        </run>
-    </groups>
-    <parameter name="environment" value="smoke"/>
+<!--    <groups>-->
+<!--        <run>-->
+<!--            <include name="smoke"></include>-->
+<!--        </run>-->
+<!--    </groups>-->
+    <parameter name="environment" value="staging"/>
     <parameter name="browser" value="chrome"/>
     <test name="Test demo" verbose="1">
-        <packages>
-            <package name="scripts.testset1.*"></package>
-        </packages>
+        <classes>
+            <class name="scripts.testset1.RegisterTest"/>
+        </classes>
     </test>
 </suite>
