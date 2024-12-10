@@ -2,6 +2,7 @@ package pages;
 
 import asserts.CustomSoftAssert;
 import lombok.Getter;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,11 +16,12 @@ import java.time.Duration;
 
 public class BasePage {
     final long EXPLICIT_TIMEOUT = 20;
+    protected WebDriver driver;
     WebDriverWait wait;
     @Getter
     CustomSoftAssert csa;
-    protected WebDriver driver;
     Actions act;
+    Alert alert;
 
     public BasePage() {
         this.driver = BaseTest.driverThread.get();
@@ -38,7 +40,6 @@ public class BasePage {
 
     protected void sendTextToElement(WebElement element, String text) {
         waitForElementAvailable(element);
-        element.click();
         element.sendKeys(text);
         System.out.println("Sent text " + text + " to element " + element);
     }
@@ -112,4 +113,16 @@ public class BasePage {
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
+
+    protected void inputAndAcceptAlert(String text) {
+        alert = this.driver.switchTo().alert();
+        alert.sendKeys(text);
+        alert.accept();
+    }
+
+    protected void cancelAlert() {
+        alert = this.driver.switchTo().alert();
+        alert.dismiss();
+    }
+
 }

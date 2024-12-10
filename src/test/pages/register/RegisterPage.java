@@ -99,4 +99,10 @@ public class RegisterPage extends BasePage {
     private void inputEmail(String email) {
         sendTextToElement(iptemail, email);
     }
+
+    @Step("Test assert")
+    public void tryToAssert() {
+        getCsa().assertEquals("vien", "vi");
+        getCsa().assertEquals("mac", "window");
+    }
 }

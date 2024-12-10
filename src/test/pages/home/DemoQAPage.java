@@ -1,12 +1,19 @@
 package pages.home;
 
 import enums.Option;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.BasePage;
 
+import java.io.File;
+
+@Slf4j
 public class DemoQAPage extends BasePage {
+    private static final Logger logger = Logger.getLogger(DemoQAPage.class);
+
     @FindBy(xpath = "//button[@id='toolTipButton']")
     WebElement btnTooltip;
 
@@ -37,6 +44,17 @@ public class DemoQAPage extends BasePage {
     @FindBy(xpath = "//select[@id='dropdown']")
     WebElement select3;
 
+    @FindBy(xpath = "//button[text()='Click for JS Prompt']")
+    WebElement btnAlert;
+
+    @FindBy(xpath = "//p[@id='result']")
+    WebElement result;
+
+    @FindBy(xpath = "//input[@id='file-upload']")
+    WebElement btnChooseFile;
+
+    @FindBy(id = "file-submit")
+    WebElement btnUpload;
 
     public DemoQAPage() {
         PageFactory.initElements(driver, this);
@@ -58,7 +76,7 @@ public class DemoQAPage extends BasePage {
         clickToElement(btnNewWindow);
         switchToWindow();
         getCsa().assertEquals(driver.getCurrentUrl(), "https://demoqa.com/sample");
-        System.out.println("Window URL:" + driver.getCurrentUrl());
+        log.info("");
     }
 
     public void switchToIFrame() {
@@ -71,5 +89,24 @@ public class DemoQAPage extends BasePage {
     public void selectItem(Option option) {
         selectItemDropdown(select3, option.getName());
         getCsa().assertEquals(getAttribute(select3, "value"), option.getValue());
+    }
+
+    public void doAlert() {
+        doubleClickElement(btnAlert);
+        inputAndAcceptAlert("hello world ^^!!!");
+        getCsa().assertEquals(getText(result), "You entered: hello world ^^!!!");
+        System.out.println(getText(result));
+
+        doubleClickElement(btnAlert);
+        cancelAlert();
+        getCsa().assertEquals(getText(result), "You entered: null");
+        System.out.println(getText(result));
+    }
+
+    public void fileUploader(String path) {
+        File f = new File(path);
+        sendTextToElement(btnChooseFile, f.getAbsolutePath());
+        clickToElement(btnUpload);
+        log.info("Uploaded file!");
     }
 }
